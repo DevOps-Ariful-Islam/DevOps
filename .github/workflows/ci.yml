@@ -9,6 +9,19 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project:
+          - .
+          - apps/clinical-dashboard
+          - apps/mobile-app
+          - packages/shared-types
+          - services/zarish-access
+          - services/zarish-analytics
+          - services/zarish-care
+          - services/zarish-labs
+          - services/zarish-ops
+          - services/zarish-sync
     steps:
       - uses: actions/checkout@v3
       - name: Set up Node.js
@@ -16,8 +29,14 @@ jobs:
         with:
           node-version: '18'
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: |
+          cd ${{ matrix.project }}
+          if [ -f package.json ]; then npm install --legacy-peer-deps; fi
       - name: Lint
-        run: npm run lint || true
+        run: |
+          cd ${{ matrix.project }}
+          if [ -f package.json ]; then npm run lint; fi
       - name: Test
-        run: npm test || true
+        run: |
+          cd ${{ matrix.project }}
+          if [ -f package.json ]; then npm test; fi
