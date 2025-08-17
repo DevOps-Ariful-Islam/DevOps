@@ -48,10 +48,10 @@
     "ml-matrix": "^6.10.9",
     "regression": "^2.0.1",
     "simple-statistics": "^7.8.3",
-    "tensorflow": "^4.10.0",
+
     "python-shell": "^5.0.0",
     "fast-csv": "^4.3.6",
-    "json2csv": "^6.1.0",
+
     "excel4node": "^1.8.2",
     "pdf-lib": "^1.17.1",
   "@zarishhealthcare/shared-types": "1.0.0"
